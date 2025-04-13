@@ -19,7 +19,7 @@ namespace MVC_Task1.Controllers
             appointment.Doctor = doctor;
             appointment.DoctorId = doctor.Id;
 
-            if(!_context.Appointments.Any(a=>a.Time == appointment.Time && a.Doctor.Name == appointment.Doctor.Name))
+            if(!_context.Appointments.Any(a=>a.Time == appointment.Time && a.Doctor.Name == appointment.Doctor.Name && a.Date == appointment.Date))
             {
                 _context.Appointments.Add(appointment);
                 _context.SaveChanges();
