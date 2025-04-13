@@ -1,0 +1,58 @@
+﻿
+<h1>Complete Appointment With @Model</h1>
+
+<form id="appointmentForm" action="SaveAppointment" method="post">
+    <div class="mb-3">
+        <input type="text" readonly class="form-control" name="doctorName" value="@Model" hidden>
+    </div>
+    <div class="mb-3">
+        <label for="patientName" class="form-label">Patient Name</label>
+        <input type="text" class="form-control" id="patientName" name="patientName">
+    </div>
+    <div class="mb-3">
+        <label for="appointmentDate" class="form-label">Appointment Date</label>
+        <input type="date" class="form-control" id="appointmentDate" name="Date">
+    </div>
+    <div class="mb-3">
+        <label for="appointmentTime" class="form-label">Appointment Time</label>
+        <input type="time" class="form-control" id="appointmentTime" min="08:00" max="20:00" step="1800" name="Time">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<!-- SweetAlert and script -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const dateInput = document.getElementById('appointmentDate');
+    const form = document.getElementById('appointmentForm');
+
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0];
+    dateInput.setAttribute("min", todayStr);
+
+    dateInput.addEventListener('input', function () {
+        const selectedDate = new Date(this.value);
+        if (selectedDate.getDay() === 5 || selectedDate.getDay() === 6) {
+            alert("Appointments cannot be scheduled on Fridays or Saturdays.");
+            this.value = "";
+        }
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent form from submitting immediately
+
+        Swal.fire({
+            title: "Confirm Appointment",
+            text: "Are you sure you want to submit the appointment?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes, submit it!",
+            cancelButtonText: "Cancel"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); // Submit the form if user confirms
+            }
+        });
+    });
+</script>

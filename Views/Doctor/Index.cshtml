@@ -1,0 +1,118 @@
+﻿@model List<Doctor>;
+<!-- Filter Section -->
+<section class="py-4 bg-light">
+    <div class="container px-4 px-lg-5">
+        <form action="/Doctor/Index">
+            <div class="row">
+                <!-- Category Filter -->
+                <div class="col-md-3">
+                    <select name="specialization" class="form-select">
+                        <option value="">All Specialization</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Dermatology">Dermatology</option>
+                        <option value="Endocrinology">Endocrinology</option>
+                        <option value="Gastroenterology">Gastroenterology</option>
+                        <option value="Hematology">Hematology</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Oncology">Oncology</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="Psychiatry">Psychiatry</option>
+
+                        @{
+                            switch (ViewBag.specialization)
+                            {
+                                case "Cardiology":
+                                    <option selected value="Cardiology">Cardiology</option>
+                                    ;
+                                    break;
+                                case "Dermatology":
+                                    <option selected value="Dermatology">Dermatology</option>
+                                    ;
+                                    break;
+                                case "Endocrinology":
+                                    <option selected value="Endocrinology">Endocrinology</option>
+                                    ;
+                                    break;
+                                case "Gastroenterology":
+                                    <option selected value="Gastroenterology">Gastroenterology</option>
+                                    ;
+                                    break;
+                                case "Hematology":
+                                    <option selected value="Hematology">Hematology</option>
+                                    ;
+                                    break;
+                                case "Neurology":
+                                    <option selected value="Neurology">Neurology</option>
+                                    ;
+                                    break;
+                                case "Orthopedics":
+                                    <option selected value="Orthopedics">Orthopedics</option>
+                                    ;
+                                    break;
+                                case "Pediatrics":
+                                    <option selected value="Pediatrics">Pediatrics</option>
+                                    ;
+                                    break;
+                                case "Psychiatry":
+                                    <option selected value="Psychiatry">Psychiatry</option>
+                                    ;
+                                    break;
+                            }
+
+
+
+                        }
+
+
+                    </select>
+                </div>
+
+                <!-- Search by Name -->
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Doctor Name" name="search" value="@ViewBag.search" />
+                </div>
+
+                <!-- Submit Button -->
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-dark w-100">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<h1>Doctors</h1>
+
+<div class="row">
+    @foreach(var doctor in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img" src="~/images/@doctor.Img" style="width: auto; height: 400px;" alt="Doctor Image">
+                <div class="card-body">
+                    <h5 class="card-title">@doctor.Name</h5>
+                    <p class="card-text">Specialization: @doctor.Specialization</p>
+                    <a href="/Appointment/Index?Name=@doctor.Name" class="btn btn-primary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Pagination -->
+<div class="row">
+    <div class="col-12 d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+
+                @for (int i = 1; i <= ViewBag.numOfPages; i++)
+                {
+                    <li class="page-item"><a class="page-link" href="/Doctor/Index?page=@i">@i</a></li>
+                }
+
+            </ul>
+        </nav>
+    </div>
+</div>

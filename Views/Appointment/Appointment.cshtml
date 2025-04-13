@@ -1,0 +1,26 @@
+﻿@model List<Appointment>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Doctor Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var i = 1;}
+        @foreach(var appointment in @Model)
+        {
+            <tr>
+                <td>@(i++)</td>
+                <td>@appointment.PatientName</td>
+                <td>@appointment.Date</td>
+                <td>@appointment.Time</td>
+                <td>@appointment.Doctor.Name</td>
+            </tr>
+        }
+       
+    </tbody>
+</table>

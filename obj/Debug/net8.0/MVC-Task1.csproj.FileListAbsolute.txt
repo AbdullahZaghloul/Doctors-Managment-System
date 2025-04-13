@@ -145,3 +145,4 @@ C:\Users\NanoChip\source\repos\MVC-Task1\obj\Debug\net8.0\refint\MVC-Task1.dll
 C:\Users\NanoChip\source\repos\MVC-Task1\obj\Debug\net8.0\MVC-Task1.pdb
 C:\Users\NanoChip\source\repos\MVC-Task1\obj\Debug\net8.0\MVC-Task1.genruntimeconfig.cache
 C:\Users\NanoChip\source\repos\MVC-Task1\obj\Debug\net8.0\ref\MVC-Task1.dll
+C:\Users\NanoChip\source\repos\MVC-Task1\obj\Debug\net8.0\MVC-Task1.sourcelink.json
